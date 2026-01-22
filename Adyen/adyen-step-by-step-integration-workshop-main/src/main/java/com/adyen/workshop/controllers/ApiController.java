@@ -160,6 +160,14 @@ public class ApiController {
         log.info("Processing subscription payment");
         
         try {
+            // Validate request body
+            if (body == null || !body.containsKey("shopperReference") || body.get("shopperReference") == null) {
+                log.error("Missing shopperReference in request body");
+                Map<String, Object> errorResponse = new HashMap<>();
+                errorResponse.put("error", "shopperReference is required");
+                return ResponseEntity.badRequest().body(errorResponse);
+            }
+            
             String shopperReference = body.get("shopperReference").toString();
             
             // Get the stored token
@@ -223,6 +231,15 @@ public class ApiController {
         log.info("Canceling subscription");
         
         try {
+            // Validate request body
+            if (body == null || !body.containsKey("shopperReference") || body.get("shopperReference") == null) {
+                log.error("Missing shopperReference in request body");
+                Map<String, Object> errorResponse = new HashMap<>();
+                errorResponse.put("success", false);
+                errorResponse.put("error", "shopperReference is required");
+                return ResponseEntity.badRequest().body(errorResponse);
+            }
+            
             String shopperReference = body.get("shopperReference").toString();
             
             // Get the stored token

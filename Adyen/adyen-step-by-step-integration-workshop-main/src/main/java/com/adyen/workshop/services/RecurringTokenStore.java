@@ -9,7 +9,19 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Simple in-memory store for recurring payment tokens.
- * In production, this should be replaced with a secure database.
+ * 
+ * IMPORTANT: This is a simple implementation for demonstration purposes only.
+ * In production, this MUST be replaced with:
+ * - A secure database (e.g., PostgreSQL, MySQL)
+ * - Encryption at rest for stored tokens
+ * - Proper access controls and audit logging
+ * - Support for distributed/clustered deployments
+ * 
+ * The current implementation has these limitations:
+ * - Tokens are lost on application restart
+ * - Not suitable for multi-instance deployments
+ * - No encryption or access controls
+ * - No audit trail
  */
 @Service
 public class RecurringTokenStore {
