@@ -4,6 +4,7 @@ import com.adyen.Client;
 import com.adyen.Config;
 import com.adyen.enums.Environment;
 import com.adyen.service.checkout.PaymentsApi;
+import com.adyen.service.checkout.RecurringApi;
 import com.adyen.util.HMACValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,5 +33,10 @@ public class DependencyInjectionConfiguration {
     @Bean
     HMACValidator hmacValidator() {
         return new HMACValidator();
+    }
+
+    @Bean
+    RecurringApi recurringApi() {
+        return new RecurringApi(client());
     }
 }
